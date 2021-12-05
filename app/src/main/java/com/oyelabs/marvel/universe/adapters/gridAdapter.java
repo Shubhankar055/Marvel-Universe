@@ -40,7 +40,7 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
     }
 
     @Override
-    public Filter getFilter() {
+    public static Filter getFilter() {
         return filter;
     }
 

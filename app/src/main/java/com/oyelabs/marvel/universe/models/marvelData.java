@@ -1,13 +1,11 @@
 package com.oyelabs.marvel.universe.models;
 
-import android.net.Uri;
-
 public class marvelData {
     String imgurl;
     String name;
     String id;
 
-    public Uri getImgurl() {
+    public String getImgurl() {
         return imgurl;
     }
 
