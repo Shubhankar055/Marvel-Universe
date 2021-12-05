@@ -5,6 +5,12 @@ public class marvelData {
     String name;
     String id;
 
+    public marvelData(String imgurl, String name, String id) {
+        this.imgurl = imgurl;
+        this.name = name;
+        this.id = id;
+    }
+
     public String getImgurl() {
         return imgurl;
     }
