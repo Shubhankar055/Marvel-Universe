@@ -57,7 +57,7 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
                 for(marvelData obj : backup){
                     if(obj.getName()
                             .toLowerCase().
-                                    contains(charSequence.toString().toLowerCase()));
+                                    contains(charSequence.toString().toLowerCase()))
                             filtereddata.add(obj);
                 }
             }

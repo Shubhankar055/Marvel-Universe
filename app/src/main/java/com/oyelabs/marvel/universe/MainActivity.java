@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
 //import android.widget.Toolbar;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //populating arraylist
         marvellist = new ArrayList<>();
 
-        marvellist.add(new marvelData("hello","hello","hello"));
+        marvellist.add(new marvelData("hello","pc","hello"));
         marvellist.add(new marvelData("hello","hello","hello"));
         marvellist.add(new marvelData("hello","hello","hello"));
         marvellist.add(new marvelData("hello","hello","hello"));
@@ -66,41 +69,29 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.searchbutton,menu);
-        return true;
-//        MenuItem item = menu.findItem(R.id.searchbtn);
-//
-//
-//
-//        return super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.searchbutton,menu);
+        MenuItem item = menu.findItem(R.id.searchbtn1);
+
+
+        SearchView searchView =(SearchView) item.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                //made static from the suggestion of the editor
+                gridAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.searchbtn:
-
-                SearchView searchView = findViewById(item.getItemId());
-
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-
-                        //made static from the suggestion of the editor
-                        gridAdapter.getFilter().filter(newText);
-                        return false;
-                    }
-                });
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
