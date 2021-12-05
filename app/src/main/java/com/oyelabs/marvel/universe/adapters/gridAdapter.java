@@ -1,6 +1,7 @@
 package com.oyelabs.marvel.universe.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -40,18 +41,58 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
 
     @Override
     public Filter getFilter() {
-        return null;
+        return filter;
     }
+
+    Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<marvelData> filtereddata = new ArrayList<>();
+
+            if (charSequence.toString().isEmpty()){
+                filtereddata.addAll(backup);
+
+            }
+            else{
+                for(marvelData obj : backup){
+                    if(obj.getName()
+                            .toLowerCase().
+                                    contains(charSequence.toString().toLowerCase()));
+                            filtereddata.add(obj);
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filtereddata;
+
+            return results;
+
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+           arrayMarvel.clear();
+           arrayMarvel.addAll((ArrayList<marvelData>)filterResults.values);
+           notifyDataSetChanged();
+        }
+    };
 
     @NonNull
     @Override
     public gridAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.gridlayout,parent, false);
+
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull gridAdapter.ViewHolder holder, int position) {
 
+        holder.heroName.setText(arrayMarvel.get(position).getName());
+
+        //will implement glide or picasso library here
+        //holder.heroImage.setImageURI(arrayMarvel.get(position).getImgurl());
+        holder.heroImage.setImageResource(R.drawable.ic_launcher_background);
     }
 
     @Override
