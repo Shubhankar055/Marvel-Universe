@@ -64,28 +64,43 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.searchbutton,menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.searchbutton,menu);
+        return true;
 //        MenuItem item = menu.findItem(R.id.searchbtn);
 //
-//        SearchView searchView = (SearchView) item.getActionView();
 //
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//
-//                //made static from the suggestion of the editor
-//                gridAdapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
 //
 //        return super.onCreateOptionsMenu(menu);
-//    }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.searchbtn:
+
+                SearchView searchView = findViewById(item.getItemId());
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+
+                        //made static from the suggestion of the editor
+                        gridAdapter.getFilter().filter(newText);
+                        return false;
+                    }
+                });
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
