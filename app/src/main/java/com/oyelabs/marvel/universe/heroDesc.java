@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 public class heroDesc extends AppCompatActivity {
     TextView TVDescription;
     ImageView IVhero;
@@ -41,6 +44,27 @@ public class heroDesc extends AppCompatActivity {
 
         TVDescription = findViewById(R.id.gridText);
         IVhero = findViewById(R.id.gridImage);
+
+        //SETTING IMAGE AND DESC
+
+//        Picasso.get()
+//                .load("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784")
+//                .resize(50, 50)
+//                .centerCrop()
+//                .placeholder(R.drawable.ic_launcher_background)
+//                .into(IVhero);
+
+        Glide.with(this)
+                .load(ImgURL)
+                .into(IVhero);
+
+        if(Desc.isEmpty()){
+            TVDescription.setText("No Description Found");
+        }
+
+        else {
+            TVDescription.setText(Desc);
+        }
 
 
 

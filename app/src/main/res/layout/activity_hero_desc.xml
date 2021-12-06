@@ -26,26 +26,28 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
-        android:layout_width="170sp"
-        android:layout_height="170sp"
-        android:padding="10sp"
-        android:src="@color/black"
         android:id="@+id/gridImage"
+        android:layout_width="270sp"
+        android:layout_height="270sp"
         android:layout_below="@id/toolbarm"
-        android:layout_marginTop="60sp"
         android:layout_centerHorizontal="true"
-        />
+        android:layout_marginTop="60sp"
+        android:padding="10sp"
+        android:src="@color/black" />
 
     <TextView
         android:id="@+id/gridText"
-        android:padding="20sp"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:layout_below="@+id/gridImage"
         android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
         android:layout_marginTop="40sp"
+        android:gravity="center_horizontal"
+        android:padding="20sp"
         android:text="@string/app_name"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
 
         />
 

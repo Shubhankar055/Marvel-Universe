@@ -96,21 +96,17 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
     @Override
     public void onBindViewHolder(@NonNull gridAdapter.ViewHolder holder, int position) {
         String Name = arrayMarvel.get(position).getName();
+        String IURL = arrayMarvel.get(position).getImgurl();
+        String DESC = arrayMarvel.get(position).getDescription();
+
         holder.heroName.setText(Name);
 
-        //will implement glide or picasso library here
-
-        //holder.heroImage.setImageURI(Uri.parse("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"));
-        //holder.heroImage.setImageResource(R.drawable.ic_launcher_background);
-
         Picasso.get()
-                .load(arrayMarvel.get(position).getImgurl())
-                .resize(50, 50)
+                .load(IURL)
+                .resize(200, 200)
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(holder.heroImage);
-
-        //Picasso.with(context).load("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg").into(holder.heroImage);
 
         //Setting OnclickListener
 
@@ -120,6 +116,8 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
                 Intent intent = new Intent(context,heroDesc.class);
 
                 intent.putExtra("NAME",Name);
+                intent.putExtra("DESC",DESC);
+                intent.putExtra("URL",IURL);
 
                 intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
