@@ -4,11 +4,21 @@ public class marvelData {
     String imgurl;
     String name;
     String id;
+    String description;
 
-    public marvelData(String imgurl, String name, String id) {
+    public marvelData(String imgurl, String name, String id ,String description) {
         this.imgurl = imgurl;
         this.name = name;
         this.id = id;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImgurl() {

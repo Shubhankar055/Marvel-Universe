@@ -1,6 +1,7 @@
 package com.oyelabs.marvel.universe.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.oyelabs.marvel.universe.R;
 import com.oyelabs.marvel.universe.models.marvelData;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>implements Filterable {
@@ -91,8 +95,17 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
         holder.heroName.setText(arrayMarvel.get(position).getName());
 
         //will implement glide or picasso library here
-        //holder.heroImage.setImageURI(arrayMarvel.get(position).getImgurl());
-        holder.heroImage.setImageResource(R.drawable.ic_launcher_background);
+        //holder.heroImage.setImageURI(Uri.parse("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"));
+        //holder.heroImage.setImageResource(R.drawable.ic_launcher_background);
+
+        Picasso.get()
+                .load("https://i.annihil.us/u/prod/marvel/i/mg/c/a0/4ce5a9bf70e19.jpg")
+                .resize(50, 50)
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(holder.heroImage);
+
+        //Picasso.with(context).load("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg").into(holder.heroImage);
     }
 
     @Override

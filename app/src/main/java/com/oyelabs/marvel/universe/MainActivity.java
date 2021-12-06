@@ -35,7 +35,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String url = "https://gateway.marvel.com/v1/public/characters?limit=50&offset=0&ts=n2&apikey=a63ab407257f9ea65a55b8044240838a&hash=9fea84ee6ad1dcab6ec2d6d2db7de855";
+    String url = "https://gateway.marvel.com/v1/public/characters?limit=2" +
+            "0&offset=0&ts=n2&apikey=a63ab407257f9ea65a55b8044240838a&hash=" +
+            "9fea84ee6ad1dcab6ec2d6d2db7de855";
+
     RecyclerView recyclerView;
     ArrayList<marvelData> marvellist;
     gridAdapter gridAdapter;
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         marvellist = new ArrayList<>();
 
+        //downloading data using volley library
+
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -67,7 +72,16 @@ public class MainActivity extends AppCompatActivity {
                     {
                         JSONObject data = jsonArray.getJSONObject(i);
 
-                        marvellist.add(new marvelData("",data.getString("name"),""));
+                        String imgurl = data.getJSONObject("thumbnail").getString("path");
+                        String imgformat = data.getJSONObject("thumbnail").getString("extension");
+
+                        String imageURI = imgurl + "." + imgformat;
+
+
+                        Log.d("IMG", "onResponse: " + imageURI);
+
+                        marvellist.add(new marvelData(imageURI,data.getString("name"),
+                                data.getString("id"),data.getString("description")));
                     }
 
                     recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
@@ -93,33 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
         //intialising variables
         recyclerView = findViewById(R.id.marvelblocks);
-
-        //downloading data using volley library
-
-
-
-        //populating arraylist
-
-//
-//        marvellist.add(new marvelData("hello","pc","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-//        marvellist.add(new marvelData("hello","hello","hello"));
-
-
-        //temporary checking recyclerView
-
-
-
-
     }
 
     @Override
