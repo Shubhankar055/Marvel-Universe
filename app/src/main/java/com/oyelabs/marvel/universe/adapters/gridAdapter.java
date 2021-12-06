@@ -1,6 +1,8 @@
 package com.oyelabs.marvel.universe.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.oyelabs.marvel.universe.MainActivity;
 import com.oyelabs.marvel.universe.R;
+import com.oyelabs.marvel.universe.heroDesc;
 import com.oyelabs.marvel.universe.models.marvelData;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
@@ -91,21 +95,37 @@ public class gridAdapter extends RecyclerView.Adapter<gridAdapter.ViewHolder>imp
 
     @Override
     public void onBindViewHolder(@NonNull gridAdapter.ViewHolder holder, int position) {
-
-        holder.heroName.setText(arrayMarvel.get(position).getName());
+        String Name = arrayMarvel.get(position).getName();
+        holder.heroName.setText(Name);
 
         //will implement glide or picasso library here
+
         //holder.heroImage.setImageURI(Uri.parse("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg"));
         //holder.heroImage.setImageResource(R.drawable.ic_launcher_background);
 
         Picasso.get()
-                .load("https://i.annihil.us/u/prod/marvel/i/mg/c/a0/4ce5a9bf70e19.jpg")
+                .load(arrayMarvel.get(position).getImgurl())
                 .resize(50, 50)
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(holder.heroImage);
 
         //Picasso.with(context).load("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg").into(holder.heroImage);
+
+        //Setting OnclickListener
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,heroDesc.class);
+
+                intent.putExtra("NAME",Name);
+
+                intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
