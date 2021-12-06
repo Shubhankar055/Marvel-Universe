@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String url = "https://gateway.marvel.com/v1/public/characters?limit=2" +
+    String url = "https://gateway.marvel.com/v1/public/characters?limit=7" +
             "0&offset=0&ts=n2&apikey=a63ab407257f9ea65a55b8044240838a&hash=" +
             "9fea84ee6ad1dcab6ec2d6d2db7de855";
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Marvel Universe...");
+        toolbar.setTitle("Marvel Universegit ");
         setSupportActionBar(toolbar);
 
         marvellist = new ArrayList<>();
