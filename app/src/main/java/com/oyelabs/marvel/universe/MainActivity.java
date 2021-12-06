@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    String url = "https://gateway.marvel.com/v1/public/characters?limit=7" +
+    String url = "https://gateway.marvel.com/v1/public/characters?limit=10" +
             "0&offset=0&ts=n2&apikey=a63ab407257f9ea65a55b8044240838a&hash=" +
             "9fea84ee6ad1dcab6ec2d6d2db7de855";
 

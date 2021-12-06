@@ -39,6 +39,7 @@
         android:id="@+id/gridText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAppearance="@color/black"
 
         android:layout_below="@+id/gridImage"
         android:layout_centerHorizontal="true"
@@ -49,7 +50,7 @@
         android:textAlignment="textStart"
         android:textSize="16sp"
 
-        />
+        tools:ignore="RtlCompat" />
 
 
 
