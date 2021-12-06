@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Marvel Universegit ");
+        toolbar.setTitle("Marvel Universe ");
         setSupportActionBar(toolbar);
 
         marvellist = new ArrayList<>();
